@@ -61,37 +61,34 @@ const saveRobotData = (robotName: string, data: ReportData[]) => {
 };
 
 const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: () => void }) => {
-  const [mode, setMode] = useState<'view' | 'manage'>('view');
+  const [activeTab, setActiveTab] = useState<'view' | 'manage' | 'management'>('view');
   const [authenticated, setAuthenticated] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordError, setPasswordError] = useState(false);
-  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
   const [selectedReport, setSelectedReport] = useState(0);
   const [reports, setReports] = useState<ReportData[]>(() => loadRobotData(robotName));
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
-  const [showManagement, setShowManagement] = useState(false);
 
   const currentReport = reports[selectedReport];
 
   const handleManage = () => {
     if (!authenticated) {
-      setShowPasswordPrompt(true);
+      setActiveTab('manage');
     } else {
-      setMode('manage');
+      setActiveTab('manage');
     }
   };
 
   const handleView = () => {
-    setMode('view');
-    setAuthenticated(false);
+    setActiveTab('view');
     setPasswordInput('');
+    setPasswordError(false);
   };
 
   const handlePasswordSubmit = () => {
     if (passwordInput === 'Viking123*') {
       setAuthenticated(true);
-      setMode('manage');
-      setShowPasswordPrompt(false);
+      setActiveTab('manage');
       setPasswordError(false);
     } else {
       setPasswordError(true);
@@ -118,7 +115,7 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
     reader.readAsDataURL(file);
   };
 
-  const isEditable = mode === 'manage';
+  const isEditable = activeTab === 'manage' && authenticated;
   const printIcons = [FileText, TrendingUp, BarChart3, Printer];
 
   return (
@@ -141,30 +138,30 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
               <button
                 onClick={handleView}
                 className={`px-4 py-1.5 text-xs font-montserrat font-bold transition-colors ${
-                  mode === 'view' && !showManagement ? 'text-black' : 'text-white hover:brightness-125'
+                  activeTab === 'view' ? 'text-black' : 'text-white hover:brightness-125'
                 }`}
-                style={{ backgroundColor: mode === 'view' && !showManagement ? '#aaff00' : '#1a5fa8' }}
+                style={{ backgroundColor: activeTab === 'view' ? '#aaff00' : '#1a5fa8' }}
               >
                 View
               </button>
               <button
-                onClick={handleManage}
-                className={`px-4 py-1.5 text-xs font-montserrat font-bold transition-colors ${
-                  mode === 'manage' && !showManagement ? 'text-black' : 'text-white hover:brightness-125'
-                }`}
-                style={{ backgroundColor: mode === 'manage' && !showManagement ? '#aaff00' : '#1a5fa8' }}
-              >
-                Manage
-              </button>
-              <button
-                onClick={() => setShowManagement(!showManagement)}
+                onClick={() => setActiveTab('management')}
                 className={`px-4 py-1.5 text-xs font-montserrat font-bold transition-colors flex items-center gap-1 ${
-                  showManagement ? 'text-black' : 'text-white hover:brightness-125'
+                  activeTab === 'management' ? 'text-black' : 'text-white hover:brightness-125'
                 }`}
-                style={{ backgroundColor: showManagement ? '#aaff00' : '#1a5fa8' }}
+                style={{ backgroundColor: activeTab === 'management' ? '#aaff00' : '#1a5fa8' }}
               >
                 <Shield size={12} />
                 Management
+              </button>
+              <button
+                onClick={handleManage}
+                className={`px-4 py-1.5 text-xs font-montserrat font-bold transition-colors ${
+                  activeTab === 'manage' ? 'text-black' : 'text-white hover:brightness-125'
+                }`}
+                style={{ backgroundColor: activeTab === 'manage' ? '#aaff00' : '#1a5fa8' }}
+              >
+                Manage
               </button>
             </div>
             <button onClick={onClose} className="bg-foreground/10 hover:bg-foreground/20 rounded-full p-1.5 transition-colors ml-2">
@@ -174,7 +171,7 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
         </div>
 
         {/* Password prompt */}
-        {showPasswordPrompt && !authenticated && (
+        {activeTab === 'manage' && !authenticated && (
           <div className="p-6 border-b border-foreground/10 bg-secondary/50">
             <div className="flex items-center gap-2 mb-3">
               <Lock size={16} className="text-primary" />
@@ -202,7 +199,8 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
           </div>
         )}
 
-        {/* Quarter selector */}
+        {/* Quarter selector - only for view/manage */}
+        {(activeTab === 'view' || (activeTab === 'manage' && authenticated)) && (
         <div className="flex gap-2 p-4 border-b border-foreground/10">
           {QUARTERS.map((t, i) => (
             <button
@@ -218,6 +216,7 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
             </button>
           ))}
         </div>
+        )}
 
         {/* Robot title */}
         <div className="p-4 border-b border-foreground/10 flex items-center gap-4">
@@ -237,13 +236,14 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
         </div>
 
         {/* Viking Management Panel */}
-        {showManagement && (
+        {activeTab === 'management' && (
           <div className="p-4 border-b border-foreground/10">
-            <VikingManagementPanel robotName={robotName} isManageMode={mode === 'manage'} />
+            <VikingManagementPanel robotName={robotName} isManageMode={false} />
           </div>
         )}
 
         {/* Dashboard */}
+        {(activeTab === 'view' || (activeTab === 'manage' && authenticated)) && (
         <div className="p-4">
           <div className="border border-foreground/10 rounded-lg p-4 mb-4">
             {/* Row 1 */}
@@ -447,7 +447,7 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
             <button
               onClick={() => {
                 saveRobotData(robotName, reports);
-                setMode('view');
+                setActiveTab('view');
                 setAuthenticated(false);
                 setPasswordInput('');
               }}
@@ -458,6 +458,7 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
             </button>
           )}
         </div>
+        )}
       </div>
     </div>
   );
