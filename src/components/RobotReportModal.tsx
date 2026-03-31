@@ -171,7 +171,7 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
         </div>
 
         {/* Password prompt */}
-        {showPasswordPrompt && !authenticated && (
+        {activeTab === 'manage' && !authenticated && (
           <div className="p-6 border-b border-foreground/10 bg-secondary/50">
             <div className="flex items-center gap-2 mb-3">
               <Lock size={16} className="text-primary" />
