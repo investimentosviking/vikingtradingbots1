@@ -199,7 +199,8 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
           </div>
         )}
 
-        {/* Quarter selector */}
+        {/* Quarter selector - only for view/manage */}
+        {(activeTab === 'view' || (activeTab === 'manage' && authenticated)) && (
         <div className="flex gap-2 p-4 border-b border-foreground/10">
           {QUARTERS.map((t, i) => (
             <button
