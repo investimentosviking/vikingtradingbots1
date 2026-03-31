@@ -73,23 +73,22 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
 
   const handleManage = () => {
     if (!authenticated) {
-      setShowPasswordPrompt(true);
+      setActiveTab('manage');
     } else {
-      setMode('manage');
+      setActiveTab('manage');
     }
   };
 
   const handleView = () => {
-    setMode('view');
-    setAuthenticated(false);
+    setActiveTab('view');
     setPasswordInput('');
+    setPasswordError(false);
   };
 
   const handlePasswordSubmit = () => {
     if (passwordInput === 'Viking123*') {
       setAuthenticated(true);
-      setMode('manage');
-      setShowPasswordPrompt(false);
+      setActiveTab('manage');
       setPasswordError(false);
     } else {
       setPasswordError(true);
