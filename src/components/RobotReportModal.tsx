@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { X, Upload, Lock, FileText, BarChart3, TrendingUp, Printer, Maximize2 } from 'lucide-react';
+import { X, Upload, Lock, FileText, BarChart3, TrendingUp, Printer, Maximize2, Shield } from 'lucide-react';
+import { VikingManagementPanel } from './VikingManagementCards';
 import vikingAlphaBtcusd from '@/assets/viking-alpha-btcusd.png';
 import vikingAlphaDax from '@/assets/viking-alpha-dax.png';
 
@@ -68,6 +69,7 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
   const [selectedReport, setSelectedReport] = useState(0);
   const [reports, setReports] = useState<ReportData[]>(() => loadRobotData(robotName));
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
+  const [showManagement, setShowManagement] = useState(false);
 
   const currentReport = reports[selectedReport];
 
@@ -139,20 +141,30 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
               <button
                 onClick={handleView}
                 className={`px-4 py-1.5 text-xs font-montserrat font-bold transition-colors ${
-                  mode === 'view' ? 'text-black' : 'text-white hover:brightness-125'
+                  mode === 'view' && !showManagement ? 'text-black' : 'text-white hover:brightness-125'
                 }`}
-                style={{ backgroundColor: mode === 'view' ? '#aaff00' : '#1a5fa8' }}
+                style={{ backgroundColor: mode === 'view' && !showManagement ? '#aaff00' : '#1a5fa8' }}
               >
                 View
               </button>
               <button
                 onClick={handleManage}
                 className={`px-4 py-1.5 text-xs font-montserrat font-bold transition-colors ${
-                  mode === 'manage' ? 'text-black' : 'text-white hover:brightness-125'
+                  mode === 'manage' && !showManagement ? 'text-black' : 'text-white hover:brightness-125'
                 }`}
-                style={{ backgroundColor: mode === 'manage' ? '#aaff00' : '#1a5fa8' }}
+                style={{ backgroundColor: mode === 'manage' && !showManagement ? '#aaff00' : '#1a5fa8' }}
               >
                 Manage
+              </button>
+              <button
+                onClick={() => setShowManagement(!showManagement)}
+                className={`px-4 py-1.5 text-xs font-montserrat font-bold transition-colors flex items-center gap-1 ${
+                  showManagement ? 'text-black' : 'text-white hover:brightness-125'
+                }`}
+                style={{ backgroundColor: showManagement ? '#aaff00' : '#1a5fa8' }}
+              >
+                <Shield size={12} />
+                Management
               </button>
             </div>
             <button onClick={onClose} className="bg-foreground/10 hover:bg-foreground/20 rounded-full p-1.5 transition-colors ml-2">
@@ -223,6 +235,13 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
             </p>
           </div>
         </div>
+
+        {/* Viking Management Panel */}
+        {showManagement && (
+          <div className="p-4 border-b border-foreground/10">
+            <VikingManagementPanel robotName={robotName} isManageMode={mode === 'manage'} />
+          </div>
+        )}
 
         {/* Dashboard */}
         <div className="p-4">
