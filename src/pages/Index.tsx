@@ -21,6 +21,9 @@ const Index = () => {
         <Hero onStartFree={() => setShowModal(true)} />
         <StatsBar />
         <ProductsSection />
+        <section id="viking-management" className="py-16 px-6 bg-background scroll-mt-20">
+          <VikingManagementPreview />
+        </section>
         <PricingSection />
         <CtaSection />
         <Footer />
