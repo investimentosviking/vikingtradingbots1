@@ -117,14 +117,14 @@ export const VikingManagementPreview = () => {
       <p className="text-center font-montserrat font-bold text-foreground text-lg mb-5">
         Viking Management — BTC/USD Example
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
         {cards.map((card, i) => (
-          <div key={i} className="rounded-2xl overflow-hidden border border-foreground/10">
+          <div key={i} className="rounded-2xl overflow-hidden border-2 flex flex-col" style={{ borderColor: card.badgeColor }}>
             <div className="py-5 text-center" style={{ background: card.headerBg }}>
               <p className="font-montserrat font-bold text-white text-2xl">{card.capital}</p>
               <p className="text-white/80 text-xs font-montserrat mt-1">{card.lotSize}</p>
             </div>
-            <div className="bg-card p-5 text-center">
+            <div className="bg-card p-5 text-center flex-1 flex flex-col">
               <span
                 className="inline-block text-xs font-montserrat font-bold px-3 py-1 rounded-full mb-2 text-white"
                 style={{ backgroundColor: card.badgeColor }}
@@ -212,9 +212,9 @@ export const VikingManagementPanel = ({
           </button>
         )}
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4 items-stretch">
         {displayCards.map((card, ci) => (
-          <div key={ci} className="rounded-2xl overflow-hidden border border-foreground/10">
+          <div key={ci} className="rounded-2xl overflow-hidden border-2 flex flex-col" style={{ borderColor: card.badgeColor }}>
             <div className="py-5 text-center" style={{ background: card.headerBg }}>
               {editing ? (
                 <>
@@ -236,7 +236,7 @@ export const VikingManagementPanel = ({
                 </>
               )}
             </div>
-            <div className="bg-card p-5">
+            <div className="bg-card p-5 flex-1 flex flex-col">
               <div className="text-center mb-3">
                 <span
                   className="inline-block text-xs font-montserrat font-bold px-3 py-1 rounded-full text-white"
