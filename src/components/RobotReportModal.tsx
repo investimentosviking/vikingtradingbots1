@@ -202,20 +202,43 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
 
         {/* Quarter selector - only for view/manage */}
         {(activeTab === 'view' || (activeTab === 'manage' && authenticated)) && (
-        <div className="flex gap-2 p-4 border-b border-foreground/10">
-          {QUARTERS.map((t, i) => (
-            <button
-              key={t}
-              onClick={() => setSelectedReport(i)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-montserrat font-bold transition-all ${
-                selectedReport === i
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-foreground/5 text-muted hover:text-foreground hover:bg-foreground/10'
-              }`}
-            >
-              Q{i + 1}
-            </button>
-          ))}
+        <div className="flex flex-col gap-2 p-4 border-b border-foreground/10">
+          {/* Year selector */}
+          <div className="flex gap-2">
+            {AVAILABLE_YEARS.map((year) => (
+              <button
+                key={year}
+                onClick={() => {
+                  setSelectedYear(year);
+                  setSelectedReport(0);
+                  setReports(loadRobotData(robotName, year));
+                }}
+                className={`px-3 py-1.5 rounded-lg text-xs font-montserrat font-bold transition-all ${
+                  selectedYear === year
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-foreground/5 text-muted hover:text-foreground hover:bg-foreground/10'
+                }`}
+              >
+                {year}
+              </button>
+            ))}
+          </div>
+          {/* Quarter selector */}
+          <div className="flex gap-2">
+            {QUARTERS.map((t, i) => (
+              <button
+                key={t}
+                onClick={() => setSelectedReport(i)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-montserrat font-bold transition-all ${
+                  selectedReport === i
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-foreground/5 text-muted hover:text-foreground hover:bg-foreground/10'
+                }`}
+              >
+                Q{i + 1}
+              </button>
+            ))}
+          </div>
         </div>
         )}
 
