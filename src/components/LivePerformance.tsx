@@ -44,31 +44,18 @@ const LivePerformance = () => {
           </div>
         </div>
 
-        {/* Card */}
+        {/* Widget */}
         {activeTab === 'btcusd' && (
-          <a
-            href="https://www.myfxbook.com/portfolio/viking-trading-bots/11996360"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block max-w-lg mx-auto rounded-xl border border-foreground/10 bg-card p-8 hover:border-primary/40 transition-all group cursor-pointer"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-montserrat font-bold text-lg text-foreground">Viking Alpha BTC/USD</h3>
-                <div className="flex items-center gap-1.5 text-xs text-muted">
-                  <Shield className="w-3 h-3 text-primary" />
-                  Verified by MyFxBook
-                </div>
-              </div>
-            </div>
-            <div className="inline-flex items-center gap-2 font-montserrat font-bold text-sm text-primary group-hover:gap-3 transition-all">
-              View Live Results
-              <ExternalLink className="w-4 h-4" />
-            </div>
-          </a>
+          <div className="rounded-xl overflow-hidden border border-foreground/10 bg-card">
+            <iframe
+              src="https://widgets.myfxbook.com/widgets/system-history-chart.html?id=11996360"
+              width="100%"
+              height="500"
+              frameBorder="0"
+              className="border-0 w-full"
+              title="Viking Alpha BTC/USD - MyFxBook"
+            />
+          </div>
         )}
       </div>
     </section>
