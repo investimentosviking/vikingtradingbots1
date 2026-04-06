@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ExternalLink, TrendingUp, Shield } from 'lucide-react';
 
 const LivePerformance = () => {
   const [activeTab, setActiveTab] = useState<'btcusd' | 'dax'>('btcusd');
@@ -11,10 +12,10 @@ const LivePerformance = () => {
             Live Performance
           </span>
           <h2 className="font-montserrat font-bold text-3xl md:text-4xl text-foreground tracking-[-0.02em] mb-4">
-            Track Record Verificado em Tempo Real
+            Verified Live Track Record
           </h2>
           <p className="text-muted max-w-2xl mx-auto text-sm">
-            Resultados auditados e públicos via MyFxBook — sem edição, sem filtros.
+            Audited public results via MyFxBook — unfiltered, unedited.
           </p>
         </div>
 
@@ -43,18 +44,31 @@ const LivePerformance = () => {
           </div>
         </div>
 
-        {/* Iframe */}
+        {/* Card */}
         {activeTab === 'btcusd' && (
-          <div className="rounded-xl overflow-hidden border border-foreground/10 bg-card">
-            <iframe
-              src="https://widgets.myfxbook.com/custom-widget?id=11996360&width=535&height=200&bart=0&linet=1&bgColor=0a0f1a&gridColor=1a2035&lineColor=88cc00&barColor=88cc00&fontColor=ffffff&title=Viking+Alpha+BTC/USD&titles=12&chartbgc=0a0f1a"
-              width="100%"
-              height="340"
-              className="border-0 w-full"
-              title="Viking Alpha BTC/USD - MyFxBook"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope"
-            />
-          </div>
+          <a
+            href="https://www.myfxbook.com/portfolio/viking-trading-bots/11996360"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block max-w-lg mx-auto rounded-xl border border-foreground/10 bg-card p-8 hover:border-primary/40 transition-all group cursor-pointer"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-montserrat font-bold text-lg text-foreground">Viking Alpha BTC/USD</h3>
+                <div className="flex items-center gap-1.5 text-xs text-muted">
+                  <Shield className="w-3 h-3 text-primary" />
+                  Verified by MyFxBook
+                </div>
+              </div>
+            </div>
+            <div className="inline-flex items-center gap-2 font-montserrat font-bold text-sm text-primary group-hover:gap-3 transition-all">
+              View Live Results
+              <ExternalLink className="w-4 h-4" />
+            </div>
+          </a>
         )}
       </div>
     </section>
