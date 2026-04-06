@@ -100,7 +100,7 @@ const RobotReportModal = ({ robotName, onClose }: { robotName: string; onClose: 
     const updated = [...reports];
     updated[selectedReport] = { ...updated[selectedReport], [field]: value };
     setReports(updated);
-    saveRobotData(robotName, updated);
+    saveRobotData(robotName, selectedYear, updated);
   };
 
   const handlePrintUpload = (index: number, file: File) => {
