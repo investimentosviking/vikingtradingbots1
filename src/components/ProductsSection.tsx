@@ -80,7 +80,24 @@ const RobotList = ({
         </div>
 
         <div className="flex-1 min-w-0">
-          <h4 className="font-montserrat font-bold text-foreground text-sm">{robot.name}</h4>
+          <h4 className="font-montserrat font-bold text-foreground text-sm flex items-center gap-2 flex-wrap">
+            {robot.bitcoinIcon && (
+              <span
+                className="inline-flex items-center justify-center w-5 h-5 rounded-full font-bold text-[11px]"
+                style={{ background: 'linear-gradient(135deg, #f7931a, #ffd700)', color: '#fff' }}
+                aria-label="Bitcoin"
+              >
+                ₿
+              </span>
+            )}
+            {robot.flag && <span className="text-base leading-none">{robot.flag}</span>}
+            <span>{robot.name}</span>
+            {robot.comingSoon && (
+              <span className="text-[9px] font-montserrat font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-foreground/10 text-muted">
+                Coming Soon
+              </span>
+            )}
+          </h4>
           <p className="text-muted text-xs font-montserrat">{robot.subtitle}</p>
         </div>
 
