@@ -37,17 +37,15 @@ interface RobotItem {
   subtitle: string;
   image: string;
   comingSoon?: boolean;
+  flag?: string;
+  bitcoinIcon?: boolean;
 }
 
-const internationalRobots: RobotItem[] = [
-  { id: 'BTC/USD', name: 'Viking Alpha', subtitle: 'Ragnar Edition – BTC/USD', image: vikingAlphaBtcusd },
-  { id: 'DAX', name: 'Viking Alpha', subtitle: 'Ivar Edition – DAX', image: vikingAlphaDax },
-  { id: 'FOREX', name: 'Viking Alpha', subtitle: 'FOREX', image: forexComingSoon, comingSoon: true },
-];
-
-const nationalRobots: RobotItem[] = [
-  { id: 'Mini Índice', name: 'Mini Índice', subtitle: 'Coming Soon', image: nationalComingSoon, comingSoon: true },
-  { id: 'Mini Dólar', name: 'Mini Dólar', subtitle: 'Coming Soon', image: nationalComingSoon, comingSoon: true },
+const portfolioRobots: RobotItem[] = [
+  { id: 'BTC/USD', name: 'Viking Alpha', subtitle: 'Ragnar Edition – BTC/USD', image: vikingAlphaBtcusd, bitcoinIcon: true },
+  { id: 'DAX', name: 'Viking Alpha', subtitle: 'Ivar Edition – DAX (DE40)', image: vikingAlphaDax, flag: '🇩🇪' },
+  { id: 'USATEC', name: 'Viking Alpha', subtitle: 'USATEC', image: forexComingSoon, comingSoon: true, flag: '🇺🇸' },
+  { id: 'HK50', name: 'Viking Alpha', subtitle: 'HK50', image: forexComingSoon, comingSoon: true, flag: '🇭🇰' },
 ];
 
 const RobotList = ({
