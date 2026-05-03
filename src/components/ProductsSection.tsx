@@ -92,6 +92,15 @@ const RobotList = ({
                 ₿
               </span>
             )}
+            {robot.goldIcon && (
+              <span
+                className="inline-flex items-center justify-center w-5 h-5 rounded-full font-bold text-[11px]"
+                style={{ background: 'linear-gradient(135deg, #b8860b, #ffd700)', color: '#fff' }}
+                aria-label="Gold"
+              >
+                🥇
+              </span>
+            )}
             {robot.flag && <span className="text-base leading-none">{robot.flag}</span>}
             <span>{robot.name}</span>
             {robot.comingSoon && (
