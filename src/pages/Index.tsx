@@ -27,6 +27,7 @@ const Index = () => {
           <VikingManagementPreview />
         </section>
         <LivePerformance />
+        <BeginnerSection />
         <PricingSection />
         <CtaSection />
         <Footer />
