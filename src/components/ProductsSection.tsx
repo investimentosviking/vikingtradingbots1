@@ -174,46 +174,29 @@ const ProductsSection = () => {
           ))}
         </div>
 
-        {/* Market groups */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-xl overflow-hidden border border-foreground/10">
-            <div
-              className="px-5 py-3 font-montserrat font-bold text-sm text-white uppercase tracking-wider"
-              style={{ backgroundColor: '#1a5fa8' }}
-            >
-              International Market
-            </div>
-            <div className="bg-card">
-              <RobotList
-                robots={internationalRobots}
-                onSelect={setSelectedRobot}
-                buttonStyle={{
-                  backgroundColor: '#d4d4d4',
-                  color: '#1a1a1a',
-                  boxShadow: '0 4px 0 #aaaaaa',
-                }}
-              />
-            </div>
+        {/* Our Portfolio */}
+        <div className="text-center mb-8">
+          <span className="inline-block bg-primary/10 text-primary font-montserrat text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
+            Our Portfolio
+          </span>
+        </div>
+        <div className="rounded-xl overflow-hidden border border-foreground/10 max-w-3xl mx-auto">
+          <div
+            className="px-5 py-3 font-montserrat font-bold text-sm text-white uppercase tracking-wider"
+            style={{ backgroundColor: '#1a5fa8' }}
+          >
+            Our Portfolio
           </div>
-
-          <div className="rounded-xl overflow-hidden border border-foreground/10">
-            <div
-              className="px-5 py-3 font-montserrat font-bold text-sm text-white uppercase tracking-wider"
-              style={{ backgroundColor: '#3a7d1e' }}
-            >
-              National Market
-            </div>
-            <div className="bg-card">
-              <RobotList
-                robots={nationalRobots}
-                onSelect={setSelectedRobot}
-                buttonStyle={{
-                  backgroundColor: '#ffd000',
-                  color: '#1a1a1a',
-                  boxShadow: '0 4px 0 #b38a00',
-                }}
-              />
-            </div>
+          <div className="bg-card">
+            <RobotList
+              robots={portfolioRobots}
+              onSelect={setSelectedRobot}
+              buttonStyle={{
+                backgroundColor: '#d4d4d4',
+                color: '#1a1a1a',
+                boxShadow: '0 4px 0 #aaaaaa',
+              }}
+            />
           </div>
         </div>
       </div>
