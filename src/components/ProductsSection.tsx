@@ -4,6 +4,11 @@ import RobotReportModal from './RobotReportModal';
 import vikingAlphaBtcusd from '@/assets/viking-alpha-btcusd.png';
 import vikingAlphaDax from '@/assets/viking-alpha-dax.png';
 import forexComingSoon from '@/assets/forex-coming-soon.png';
+import flagDe from '@/assets/flag-de.png';
+import flagBtc from '@/assets/flag-btc.png';
+import flagGold from '@/assets/flag-gold.png';
+import flagUs from '@/assets/flag-us.png';
+import flagHk from '@/assets/flag-hk.png';
 
 
 const tools = [
@@ -37,17 +42,15 @@ interface RobotItem {
   subtitle: string;
   image: string;
   comingSoon?: boolean;
-  flag?: string;
-  bitcoinIcon?: boolean;
-  goldIcon?: boolean;
+  badge: string;
 }
 
 const portfolioRobots: RobotItem[] = [
-  { id: 'DAX', name: 'Viking Alpha DAX', subtitle: 'Ivar Edition — DAX (DE40)', image: vikingAlphaDax, flag: '🇩🇪' },
-  { id: 'BTC/USD', name: 'Viking Alpha', subtitle: 'Ragnar Edition – BTC/USD', image: forexComingSoon, bitcoinIcon: true, comingSoon: true },
-  { id: 'GOLD', name: 'Viking Alpha Gold', subtitle: 'Precision trading on the world\'s safe haven asset – XAU/USD', image: forexComingSoon, comingSoon: true, goldIcon: true },
-  { id: 'USATEC', name: 'Viking Alpha', subtitle: 'USATEC', image: forexComingSoon, comingSoon: true, flag: '🇺🇸' },
-  { id: 'HK50', name: 'Viking Alpha', subtitle: 'HK50', image: forexComingSoon, comingSoon: true, flag: '🇭🇰' },
+  { id: 'DAX', name: 'Viking Alpha DAX', subtitle: 'Ivar Edition — DAX (DE40)', image: vikingAlphaDax, badge: flagDe },
+  { id: 'BTC/USD', name: 'Viking Alpha', subtitle: 'Ragnar Edition – BTC/USD', image: forexComingSoon, badge: flagBtc, comingSoon: true },
+  { id: 'GOLD', name: 'Viking Alpha Gold', subtitle: 'Precision trading on the world\'s safe haven asset – XAU/USD', image: forexComingSoon, badge: flagGold, comingSoon: true },
+  { id: 'USATEC', name: 'Viking Alpha', subtitle: 'USATEC', image: forexComingSoon, badge: flagUs, comingSoon: true },
+  { id: 'HK50', name: 'Viking Alpha', subtitle: 'HK50', image: forexComingSoon, badge: flagHk, comingSoon: true },
 ];
 
 const RobotList = ({
@@ -83,25 +86,14 @@ const RobotList = ({
 
         <div className="flex-1 min-w-0">
           <h4 className="font-montserrat font-bold text-foreground text-sm flex items-center gap-2 flex-wrap">
-            {robot.bitcoinIcon && (
-              <span
-                className="inline-flex items-center justify-center w-7 h-7 rounded-full font-bold text-sm shadow-md"
-                style={{ background: 'linear-gradient(135deg, #f7931a, #ffd700)', color: '#fff' }}
-                aria-label="Bitcoin"
-              >
-                ₿
-              </span>
-            )}
-            {robot.goldIcon && (
-              <span
-                className="inline-flex items-center justify-center w-7 h-7 rounded-full font-bold text-sm shadow-md"
-                style={{ background: 'linear-gradient(135deg, #b8860b, #ffd700)', color: '#fff' }}
-                aria-label="Gold"
-              >
-                🥇
-              </span>
-            )}
-            {robot.flag && <span className="text-xl leading-none">{robot.flag}</span>}
+            <img
+              src={robot.badge}
+              alt=""
+              loading="lazy"
+              width={32}
+              height={32}
+              className="w-8 h-8 object-contain drop-shadow-md flex-shrink-0"
+            />
             <span>{robot.name}</span>
             {robot.comingSoon && (
               <span className="text-[9px] font-montserrat font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-foreground/10 text-muted">
