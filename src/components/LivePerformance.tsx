@@ -10,6 +10,7 @@ const cards = [
     borderColor: '#a8ff3e',
     link: 'https://www.fxblue.com/users/Vikingtradingbots',
     enabled: true,
+    hidden: true,
   },
   {
     name: 'Viking Alpha DAX',
