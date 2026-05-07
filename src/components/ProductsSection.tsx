@@ -85,7 +85,7 @@ const RobotList = ({
           <h4 className="font-montserrat font-bold text-foreground text-sm flex items-center gap-2 flex-wrap">
             {robot.bitcoinIcon && (
               <span
-                className="inline-flex items-center justify-center w-5 h-5 rounded-full font-bold text-[11px]"
+                className="inline-flex items-center justify-center w-7 h-7 rounded-full font-bold text-sm shadow-md"
                 style={{ background: 'linear-gradient(135deg, #f7931a, #ffd700)', color: '#fff' }}
                 aria-label="Bitcoin"
               >
@@ -94,14 +94,14 @@ const RobotList = ({
             )}
             {robot.goldIcon && (
               <span
-                className="inline-flex items-center justify-center w-5 h-5 rounded-full font-bold text-[11px]"
+                className="inline-flex items-center justify-center w-7 h-7 rounded-full font-bold text-sm shadow-md"
                 style={{ background: 'linear-gradient(135deg, #b8860b, #ffd700)', color: '#fff' }}
                 aria-label="Gold"
               >
                 🥇
               </span>
             )}
-            {robot.flag && <span className="text-base leading-none">{robot.flag}</span>}
+            {robot.flag && <span className="text-xl leading-none">{robot.flag}</span>}
             <span>{robot.name}</span>
             {robot.comingSoon && (
               <span className="text-[9px] font-montserrat font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-foreground/10 text-muted">

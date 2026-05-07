@@ -39,7 +39,7 @@ const DEFAULT_BTCUSD: RiskCard[] = [
     ],
   },
   {
-    capital: '$200',
+    capital: '$300',
     lotSize: '0.01 DAX lot size',
     badgeLabel: 'Medium risk',
     badgeColor: '#2563eb',
