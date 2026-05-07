@@ -76,15 +76,44 @@ const LivePerformance = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center mt-10">
-          <iframe
-            src="//www.fxblue.com/fxbluechart.aspx?c=ch_cumulativeprofit&id=Vikingtradingbots"
-            frameBorder="0"
-            width="100%"
-            height="300"
-            style={{ maxWidth: '800px', borderRadius: '16px' }}
-            title="FX Blue Live Performance"
-          />
+        <div className="mt-12 max-w-3xl mx-auto">
+          <div className="rounded-2xl border-2 border-primary/40 bg-card p-6 md:p-8">
+            <div className="text-center mb-6">
+              <h3 className="font-montserrat font-bold text-xl md:text-2xl text-foreground">
+                Viking Alpha DAX — Verified Backtest Results
+              </h3>
+              <p className="text-muted text-sm font-montserrat mt-1">
+                12 months | April 2025 → March 2026
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: 'Initial Deposit', value: '$150' },
+                { label: 'Final Balance', value: '$1,055' },
+                { label: 'Net Profit', value: '+$905' },
+                { label: 'Return', value: '+503%' },
+                { label: 'Win Rate', value: '63.5%' },
+                { label: 'Profit Factor', value: '2.60' },
+                { label: 'Max Drawdown', value: '15.07%' },
+                { label: 'Total Trades', value: '222' },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-xl bg-background/60 border border-border p-4 text-center"
+                >
+                  <div className="text-muted text-[11px] font-montserrat font-bold tracking-[0.15em] uppercase mb-1">
+                    {s.label}
+                  </div>
+                  <div className="font-montserrat font-bold text-primary text-lg md:text-xl">
+                    {s.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-muted text-xs font-montserrat mt-6 italic">
+              Live performance tracking coming soon via FX Blue
+            </p>
+          </div>
         </div>
       </div>
     </section>
