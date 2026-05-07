@@ -43,7 +43,7 @@ interface RobotItem {
 }
 
 const portfolioRobots: RobotItem[] = [
-  { id: 'BTC/USD', name: 'Viking Alpha', subtitle: 'Ragnar Edition – BTC/USD', image: vikingAlphaBtcusd, bitcoinIcon: true },
+  { id: 'BTC/USD', name: 'Viking Alpha', subtitle: 'Ragnar Edition – BTC/USD', image: vikingAlphaBtcusd, bitcoinIcon: true, comingSoon: true },
   { id: 'DAX', name: 'Viking Alpha', subtitle: 'Ivar Edition – DAX (DE40)', image: vikingAlphaDax, flag: '🇩🇪' },
   { id: 'GOLD', name: 'Viking Alpha Gold', subtitle: 'Precision trading on the world\'s safe haven asset – XAU/USD', image: forexComingSoon, comingSoon: true, goldIcon: true },
   { id: 'USATEC', name: 'Viking Alpha', subtitle: 'USATEC', image: forexComingSoon, comingSoon: true, flag: '🇺🇸' },
