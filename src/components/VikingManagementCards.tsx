@@ -25,7 +25,7 @@ const DESCRIPTIONS = {
 const DEFAULT_BTCUSD: RiskCard[] = [
   {
     capital: '$150',
-    lotSize: '0.01 BTC lot size',
+    lotSize: '0.01 DAX lot size',
     badgeLabel: 'High risk',
     badgeColor: '#d97706',
     headerBg: 'linear-gradient(135deg, #f59e0b, #d97706)',
@@ -40,7 +40,7 @@ const DEFAULT_BTCUSD: RiskCard[] = [
   },
   {
     capital: '$200',
-    lotSize: '0.01 BTC lot size',
+    lotSize: '0.01 DAX lot size',
     badgeLabel: 'Medium risk',
     badgeColor: '#2563eb',
     headerBg: 'linear-gradient(135deg, #3b82f6, #2563eb)',
@@ -55,7 +55,7 @@ const DEFAULT_BTCUSD: RiskCard[] = [
   },
   {
     capital: '$500',
-    lotSize: '0.01 BTC lot size',
+    lotSize: '0.01 DAX lot size',
     badgeLabel: 'Low risk',
     badgeColor: '#16a34a',
     headerBg: 'linear-gradient(135deg, #22c55e, #16a34a)',
@@ -115,7 +115,7 @@ export const VikingManagementPreview = () => {
         Each robot includes a personalized Viking Management guide — choose your risk profile directly inside each robot's specifications.
       </p>
       <p className="text-center font-montserrat font-bold text-foreground text-lg mb-5">
-        Viking Management — BTC/USD Example
+        Viking Management — DAX Example
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
         {cards.map((card, i) => (
@@ -138,7 +138,7 @@ export const VikingManagementPreview = () => {
         ))}
       </div>
       <p className="text-center text-muted text-xs font-montserrat mt-4 opacity-60">
-        This is an example for Viking BTC/USD. Each robot has its own risk profile inside its report page.
+        This is an example for Viking Alpha DAX. Each robot has its own risk profile inside its report page.
       </p>
     </div>
   );

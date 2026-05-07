@@ -10,6 +10,7 @@ const cards = [
     borderColor: '#a8ff3e',
     link: 'https://www.fxblue.com/users/Vikingtradingbots',
     enabled: true,
+    hidden: true,
   },
   {
     name: 'Viking Alpha DAX',
@@ -41,7 +42,7 @@ const LivePerformance = () => {
             <div
               key={i}
               className="rounded-2xl overflow-hidden border-2 flex flex-col bg-card"
-              style={{ borderColor: card.borderColor }}
+              style={{ borderColor: card.borderColor, display: (card as any).hidden ? 'none' : undefined }}
             >
               <div className="h-40 overflow-hidden flex items-center justify-center bg-background">
                 <img
